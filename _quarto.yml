@@ -13,7 +13,7 @@ website:
     search: false
     tools:
       - icon: github
-        href: https://github.com/linogaliana/dataviz-bike-price
+        href: https://github.com/linogaliana/rag-dsn
         text: Code source sur GitHub
 
 format:
