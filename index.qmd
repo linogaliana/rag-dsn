@@ -1,0 +1,41 @@
+---
+title: "dsn-extractor"
+---
+
+
+```{python}
+import pandas as pd
+df = pd.read_csv("./data/rubriques.csv")
+```
+
+```{python}
+ojs_define(data = df)
+```
+
+```{ojs}
+df = transpose(data)
+codes = df.map(d => d.code)
+codes
+```
+
+```{ojs}
+import { SearchForm } from "@floatingpurr/input-autocomplete"
+```
+
+```{ojs}
+viewof codeDSN = Inputs.text({
+  label: "U.S. state",
+  placeholder: "Entrer un code",
+  value: df.map(d => d.code)[0],
+  datalist: df.map(d => d.code)
+})
+```
+
+
+```{ojs}
+d3.json(`http://localhost:8000/check/${codeDSN}`)
+```
+
+
+
+

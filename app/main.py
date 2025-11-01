@@ -8,7 +8,6 @@ import json
 # --------------------------------------------------
 LOG_PATH = Path("logs/api.log")
 LOG_PATH.parent.mkdir(exist_ok=True, parents=True)
-
 logger.add(LOG_PATH, rotation="1 MB", encoding="utf-8", enqueue=True)
 logger.info("🚀 Lancement de l'API DSN Checker")
 
@@ -22,7 +21,7 @@ app = FastAPI(
 )
 
 # --------------------------------------------------
-# Chargement des données JSON
+# Chargement des données
 # --------------------------------------------------
 DATA_PATH = Path("data/rubriques.json")
 
@@ -30,33 +29,24 @@ if not DATA_PATH.exists():
     logger.error(f"❌ Fichier introuvable : {DATA_PATH.resolve()}")
     raise FileNotFoundError(f"Le fichier {DATA_PATH} est introuvable. Exécute d'abord le script d'extraction.")
 
-try:
-    logger.info(f"📂 Lecture du fichier {DATA_PATH}")
-    with open(DATA_PATH, "r", encoding="utf-8") as f:
-        dsn_data = json.load(f)
-    logger.success(f"✅ {len(dsn_data)} rubriques chargées depuis {DATA_PATH.name}")
-except Exception as e:
-    logger.exception("💥 Erreur lors du chargement du fichier JSON")
-    raise e
+with open(DATA_PATH, "r", encoding="utf-8") as f:
+    dsn_data = json.load(f)
+logger.success(f"✅ {len(dsn_data)} rubriques chargées depuis {DATA_PATH.name}")
 
-# Création d’un index par code pour recherche rapide
 dsn_dict = {item["code"]: item for item in dsn_data}
 logger.info(f"📇 Index des rubriques créé ({len(dsn_dict)} entrées)")
 
 # --------------------------------------------------
-# Routes API
+# Routes
 # --------------------------------------------------
 @app.get("/")
 def root():
-    logger.debug("Requête GET /")
-    return {"message": "API DSN prête 🎯 — essayez /check/S10.G00.00.001"}
+    logger.debug("GET /")
+    return {"message": "API DSN prête 🎯 — essayez /check/S10.G00.00.001 ou /liste_rubriques"}
 
 
 @app.get("/check/{code}")
 def check_code(code: str):
-    """
-    Vérifie si un code DSN existe et retourne ses informations.
-    """
     logger.info(f"🔎 Vérification du code DSN : {code}")
     item = dsn_dict.get(code)
     if not item:
@@ -68,8 +58,16 @@ def check_code(code: str):
 
 @app.get("/count")
 def count_rubriques():
-    """
-    Retourne le nombre total de rubriques chargées.
-    """
-    logger.debug("Requête GET /count")
+    logger.debug("GET /count")
     return {"count": len(dsn_data)}
+
+
+@app.get("/liste_rubriques")
+def liste_rubriques():
+    """
+    Retourne la liste complète des rubriques DSN.
+    ⚠️ Attention : peut être volumineux !
+    """
+    logger.info("📤 Envoi de la liste des codes DSN uniquement")
+    codes = list(dsn_dict.keys())
+    return {"count": len(codes), "codes": codes}
