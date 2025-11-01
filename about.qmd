@@ -1,0 +1,6 @@
+---
+title: "A propos du projet"
+---
+
+En ce premier novembre pluvieux, puisque le PDF du cachier technique de la DSN a l'air relativement structuré mais lourd à prendre en main, pourquoi ne pas développer une API pour récupérer le contenu utile ?
+

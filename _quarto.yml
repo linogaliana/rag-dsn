@@ -2,20 +2,26 @@ project:
   type: website
 
 website:
-  title: "dsn-extractor"
   navbar:
     left:
       - href: index.qmd
         text: Home
       - about.qmd
+    title: false
+    collapse-below: lg
+    background: light
+    search: false
+    tools:
+      - icon: github
+        href: https://github.com/linogaliana/dataviz-bike-price
+        text: Code source sur GitHub
 
 format:
   html:
-    theme:
-      - cosmo
-      - brand
+    respect-user-color-scheme: true
     css: styles.css
     toc: true
-
-
+    theme:
+      light: lightly,
+      dark: [darkly, themes/dark.scss]
 

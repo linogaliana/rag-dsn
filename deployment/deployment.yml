@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-dsn-deployment
+  labels:
+    app: api-dsn
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-dsn
+  template:
+    metadata:
+      labels:
+        app: api-dsn
+    spec:
+      containers:
+      - name: api-dsn
+        image: linogaliana/dsn-api:latest
+        ports:
+        - containerPort: 8000

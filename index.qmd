@@ -1,40 +1,57 @@
 ---
-title: "dsn-extractor"
+title: "API d'extraction d'infos de la DSN"
+echo: false
 ---
 
 
-```{python}
-import pandas as pd
-df = pd.read_csv("./data/rubriques.csv")
-```
-
-```{python}
-ojs_define(data = df)
-```
-
 ```{ojs}
-df = transpose(data)
-codes = df.map(d => d.code)
-codes
+liste_codes = d3.json("https://specif-dsn.lab.sspcloud.fr/liste_rubriques")
 ```
 
-```{ojs}
-import { SearchForm } from "@floatingpurr/input-autocomplete"
-```
+Une extraction bête et méchante du contenu du manuel technique 2024 de la DSN, un magnifique PDF de 400 pages. 
+
+Bientôt de l'IA sur les titres de rubriques et description pour rendre la recherche plus intelligente. Et une plus jolie mise en forme du contenu des rubriques pour rendre ce contenu plus utile. 
+
 
 ```{ojs}
 viewof codeDSN = Inputs.text({
-  label: "U.S. state",
-  placeholder: "Entrer un code",
-  value: df.map(d => d.code)[0],
-  datalist: df.map(d => d.code)
+  label: "Code technique DSN",
+  placeholder: "Entrer un code avec l'aide de l'autocomplétion",
+  value: liste_codes['codes'][0],
+  datalist: liste_codes['codes']
 })
 ```
 
 
 ```{ojs}
-d3.json(`http://localhost:8000/check/${codeDSN}`)
+content = d3.json(`https://specif-dsn.lab.sspcloud.fr/check/${codeDSN}`)
 ```
+
+
+
+```{ojs}
+md`
+ ### ${content.data.nom_champ} (\`${content.data.code}\`)
+ 
+ **Nom technique** : \`${content.data.nom_technique}\`
+  
+  ${content.data.description}
+`
+```
+
+
+```{ojs}
+//import {Copier} from "@mbostock/copier"
+pbcopy = text => navigator.clipboard.writeText(text)
+function Copier(content = "Copy code", options) {
+  if (Array.isArray(content)) content = Array.from(content, ([key, value]) => [key, () => (pbcopy(value), value)]);
+  return Inputs.button(content, {...options, reduce: (value) => (pbcopy(value), value)});
+}
+```
+
+```{ojs}
+Copier("Copier la sortie en JSON", {value: `${JSON.stringify(content.data, null, 2)}`})
+``` 
 
 
 
