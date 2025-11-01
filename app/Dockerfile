@@ -28,4 +28,4 @@ COPY src ./src
 EXPOSE 8000
 
 # Utilise "uv run uvicorn" si tu veux exploiter uv
-CMD ["uv", "run", "uvicorn", "app.main:app"]
+CMD ["uv", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0"]
