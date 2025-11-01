@@ -13,14 +13,16 @@ WORKDIR /app
 # -----------------------------
 COPY pyproject.toml .
 
-RUN pip install uv && uv sync
+RUN pip install uv && uv sync && mkdir -p data
 
 # -----------------------------
 # 📁 4. Copier le code de l'application
 # -----------------------------
 COPY app ./app
 COPY src ./src
+COPY src/main.py main.py
 
+RUN uv run main.py
 
 # -----------------------------
 # 🚀 5. Commande de lancement
