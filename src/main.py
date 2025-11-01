@@ -8,7 +8,7 @@ from src.parse import detect_rubriques
 # Example usage
 download_pdf(
     url="https://www.net-entreprises.fr/media/documentation/dsn-cahier-technique-2025.1.pdf",
-    filename="data/cahier.pdf"
+    filename="data/cahier.pdf",
 )
 
 logger.success("PDF téléchargé !")

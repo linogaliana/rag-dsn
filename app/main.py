@@ -17,7 +17,7 @@ logger.info("🚀 Lancement de l'API DSN Checker")
 app = FastAPI(
     title="DSN Checker API",
     version="1.0.0",
-    description="API permettant de vérifier et rechercher des rubriques DSN extraites du cahier technique."
+    description="API permettant de vérifier et rechercher des rubriques DSN extraites du cahier technique.",
 )
 
 # --------------------------------------------------
@@ -27,7 +27,9 @@ DATA_PATH = Path("data/rubriques.json")
 
 if not DATA_PATH.exists():
     logger.error(f"❌ Fichier introuvable : {DATA_PATH.resolve()}")
-    raise FileNotFoundError(f"Le fichier {DATA_PATH} est introuvable. Exécute d'abord le script d'extraction.")
+    raise FileNotFoundError(
+        f"Le fichier {DATA_PATH} est introuvable. Exécute d'abord le script d'extraction."
+    )
 
 with open(DATA_PATH, "r", encoding="utf-8") as f:
     dsn_data = json.load(f)
@@ -36,13 +38,16 @@ logger.success(f"✅ {len(dsn_data)} rubriques chargées depuis {DATA_PATH.name}
 dsn_dict = {item["code"]: item for item in dsn_data}
 logger.info(f"📇 Index des rubriques créé ({len(dsn_dict)} entrées)")
 
+
 # --------------------------------------------------
 # Routes
 # --------------------------------------------------
 @app.get("/")
 def root():
     logger.debug("GET /")
-    return {"message": "API DSN prête 🎯 — essayez /check/S10.G00.00.001 ou /liste_rubriques"}
+    return {
+        "message": "API DSN prête 🎯 — essayez /check/S10.G00.00.001 ou /liste_rubriques"
+    }
 
 
 @app.get("/check/{code}")
@@ -51,7 +56,9 @@ def check_code(code: str):
     item = dsn_dict.get(code)
     if not item:
         logger.warning(f"❌ Code non trouvé : {code}")
-        raise HTTPException(status_code=404, detail="Code non trouvé dans les rubriques DSN")
+        raise HTTPException(
+            status_code=404, detail="Code non trouvé dans les rubriques DSN"
+        )
     logger.success(f"✅ Code trouvé : {code}")
     return {"found": True, "data": item}
 

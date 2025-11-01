@@ -3,8 +3,8 @@ from pathlib import Path
 import PyPDF2
 import re
 
-def download_pdf(url: str, filename: str = None):
 
+def download_pdf(url: str, filename: str = None):
     if filename is None:
         filename = Path(url).name  # Extract file name from URL
 
@@ -13,7 +13,6 @@ def download_pdf(url: str, filename: str = None):
 
     with open(filename, "wb") as f:
         f.write(response.content)
-
 
 
 def read_pdf_from_page(filepath: str, start_page: int = 0, end_page: int = None):
@@ -49,7 +48,12 @@ def clean_pdf_text(text: str) -> str:
     du type 'Sxx.Gxx.xx   YYYY -MM-DD'.
     """
     # 1️⃣ Supprimer les lignes de type 'S10.G00.00   2025 -07-22'
-    cleaned = re.sub(r"^\s*S\d{2}\.G\d{2}\.\d{2}\s+\d{4}\s*-\s*\d{2}\s*-\s*\d{2}\s*$", "", text, flags=re.MULTILINE)
+    cleaned = re.sub(
+        r"^\s*S\d{2}\.G\d{2}\.\d{2}\s+\d{4}\s*-\s*\d{2}\s*-\s*\d{2}\s*$",
+        "",
+        text,
+        flags=re.MULTILINE,
+    )
 
     # 2️⃣ Supprimer les lignes vides multiples
     cleaned = re.sub(r"\n{2,}", "\n\n", cleaned)

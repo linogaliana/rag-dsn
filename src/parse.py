@@ -1,5 +1,6 @@
 import re
 
+
 def detect_rubriques(text: str):
     """
     Détecte les rubriques (ligne avec code DSN Sxx.Gxx.xx.xxx en fin de ligne),
@@ -8,7 +9,7 @@ def detect_rubriques(text: str):
     Exclut toute ligne contenant CCH-<digits> ou SIG-<digits>.
     """
     # 1) Split + strip
-    lines = [l.strip() for l in text.splitlines() if l.strip()]
+    lines = [listing.strip() for listing in text.splitlines() if listing.strip()]
 
     # 3) Regex rubrique (code DSN à la fin de la ligne)
     regex_rubrique = r"S\d{2}\.G\d{2}\.\d{2}\.\s*\d{3}$"
@@ -27,14 +28,18 @@ def detect_rubriques(text: str):
         description = " ".join(lines[start:end]).strip()
 
         m = re.match(r"^(.*?)\s+(S\d{2}\.G\d{2}\.\d{2}\.\s*\d{3})$", line)
-        nom_champ, code = (m.group(1).strip(), m.group(2).replace(" ", "")) if m else (line, "")
+        nom_champ, code = (
+            (m.group(1).strip(), m.group(2).replace(" ", "")) if m else (line, "")
+        )
 
-        results.append({
-            "nom_champ": nom_champ,
-            "code": code,
-            "nom_technique": next_line,
-            "description": description
-        })
+        results.append(
+            {
+                "nom_champ": nom_champ,
+                "code": code,
+                "nom_technique": next_line,
+                "description": description,
+            }
+        )
 
     return results
 
