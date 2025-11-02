@@ -16,7 +16,7 @@ logger.info("🚀 Lancement de l'API DSN Checker")
 # --------------------------------------------------
 app = FastAPI(
     title="DSN Checker API",
-    version="1.0.0",
+    version="0.0.2",
     description="API permettant de vérifier et rechercher des rubriques DSN extraites du cahier technique.",
 )
 

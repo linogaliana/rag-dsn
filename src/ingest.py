@@ -17,13 +17,17 @@ def download_pdf(url: str, filename: str = None):
 
 def read_pdf_from_page(filepath: str, start_page: int = 0, end_page: int = None):
     """
-    Read and extract text from a PDF starting at a specific page.
+    Read and extract text from a PDF starting at a specific page,
+    and inject page numbers before each page's content.
 
     Args:
         filepath (str): Path to the PDF file.
         start_page (int): Page number to start from (0-indexed).
         end_page (int, optional): Page number to stop before (0-indexed, exclusive).
                                   If None, reads until the end of the document.
+
+    Returns:
+        str: Concatenated text with page markers included.
     """
     text = ""
     with open(filepath, "rb") as file:
@@ -37,7 +41,8 @@ def read_pdf_from_page(filepath: str, start_page: int = 0, end_page: int = None)
 
         for i in range(start_page, end_page):
             page_text = reader.pages[i].extract_text() or ""
-            text += page_text
+            # Inject page marker before page content
+            text += f"\n\n=== [PAGE {i + 1}] ===\n" + page_text
 
     return text
 

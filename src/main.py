@@ -31,10 +31,3 @@ logger.success("Sauvegarde intermédiaire")
 with open("data/rubriques.json", "w", encoding="utf-8") as f:
     json.dump(results, f, ensure_ascii=False, indent=2)
 
-
-fieldnames = list(results[0].keys())
-
-with open("data/rubriques.csv", "w", newline="", encoding="utf-8") as f:
-    writer = csv.DictWriter(f, fieldnames=fieldnames)
-    writer.writeheader()
-    writer.writerows(results)
