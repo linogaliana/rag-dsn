@@ -65,9 +65,6 @@ markdown_modalite = {
 ```
 
 
-
-
-
 ```{ojs}
 md`
  ### ${content.data.nom_champ} (\`${content.data.code}\`)
@@ -77,6 +74,13 @@ md`
   ${content.data.description}
 
   ${markdown_modalite}
+
+  <details>
+  <summary>
+  Détails
+  </summary>
+  _${content.data.controles}_
+  </details>
 `
 ```
 
