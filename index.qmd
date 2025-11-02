@@ -27,6 +27,45 @@ viewof codeDSN = Inputs.text({
 content = d3.json(`https://specif-dsn.lab.sspcloud.fr/check/${codeDSN}`)
 ```
 
+```{ojs}
+markdown_modalite = {
+  // 1️⃣ On sécurise l’accès à la donnée
+  const modalites = content?.data?.modalites;
+
+  // 2️⃣ On vérifie que c’est un tableau
+  if (!Array.isArray(modalites) || modalites.length === 0) {
+    return html`<p style="color:#888;">Aucune modalité disponible.</p>`;
+  }
+
+  // 3️⃣ On crée les lignes HTML à partir du tableau
+  const rows = modalites.map(
+    ([code, label]) => html`<tr><td style="text-align:center;">${code}</td><td>${label}</td></tr>`
+  );
+
+  // 4️⃣ On assemble le tout dans un tableau stylé
+  const tableHTML = html`
+    <table style="border-collapse:collapse; width:100%; margin-top:1em; font-family:sans-serif;">
+      <caption style="font-weight:bold; padding:0.5em; caption-side:top; text-align:left;">
+        Liste des modalités
+      </caption>
+      <thead style="background:#444; color:white;">
+        <tr>
+          <th style="text-align:center; padding:0.5em;">Code</th>
+          <th style="text-align:left; padding:0.5em;">Libellé</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rows}
+      </tbody>
+    </table>
+  `;
+
+  return tableHTML;
+}
+```
+
+
+
 
 
 ```{ojs}
@@ -36,6 +75,8 @@ md`
  **Nom technique** : \`${content.data.nom_technique}\`
   
   ${content.data.description}
+
+  ${markdown_modalite}
 `
 ```
 
@@ -51,7 +92,7 @@ function Copier(content = "Copy code", options) {
 
 ```{ojs}
 Copier("Copier la sortie en JSON", {value: `${JSON.stringify(content.data, null, 2)}`})
-``` 
+```
 
 
 
