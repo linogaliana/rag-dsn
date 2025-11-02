@@ -1,6 +1,7 @@
 ---
-title: "API d'extraction d'infos de la DSN"
 echo: false
+toc: false
+title-block-style: none
 ---
 
 
@@ -8,9 +9,33 @@ echo: false
 liste_codes = d3.json("https://specif-dsn.lab.sspcloud.fr/liste_rubriques")
 ```
 
-Une extraction bête et méchante du contenu du manuel technique 2024 de la DSN, un magnifique PDF de 400 pages. 
 
-Bientôt de l'IA sur les titres de rubriques et description pour rendre la recherche plus intelligente. Et une plus jolie mise en forme du contenu des rubriques pour rendre ce contenu plus utile. 
+
+::: {.column-page}
+
+# API d'extraction d'infos de la DSN
+
+Une extraction bête et méchante du contenu du manuel technique 2025 de la DSN, un magnifique PDF de 400 pages. 
+
+
+
+
+
+:::: {.callout-tip collapse="true"}
+## Bientôt
+
+* De l'IA sur les titres de rubriques et description pour rendre la recherche plus intelligente.
+* Choix des années
+
+::::
+
+
+```{ojs}
+viewof annee = Inputs.checkbox(
+  ["2022", "2023", "2024", "2025"],
+  {label: "Année", disabled: ["2022", "2023", "2024"], value: ["2025"]}
+)
+```
 
 
 ```{ojs}
@@ -22,6 +47,30 @@ viewof codeDSN = Inputs.text({
 })
 ```
 
+<br>
+
+
+```{ojs}
+viewBlock = html`
+  <div style="
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+    width: 100%;
+    box-sizing: border-box;
+  ">
+    <div style="padding: 1rem; border-radius: 8px;">
+      ${renderedBlocks}
+    </div>
+    <div style="padding: 1rem; border-radius: 8px;">
+      ${embeddedPDF}
+    </div>
+  </div>
+`
+```
+
+:::
 
 ```{ojs}
 content = d3.json(`https://specif-dsn.lab.sspcloud.fr/check/${codeDSN}`)
@@ -66,7 +115,7 @@ markdown_modalite = {
 
 
 ```{ojs}
-md`
+renderedBlocks = md`
  ### ${content.data.nom_champ} (\`${content.data.code}\`)
  
  **Nom technique** : \`${content.data.nom_technique}\`
@@ -76,14 +125,27 @@ md`
   ${markdown_modalite}
 
   <details>
+
   <summary>
-  Détails
+  Détails supplémentaires de la rubrique
   </summary>
+
   _${content.data.controles}_
+
   </details>
+
+  ${copy_button}
 `
 ```
 
+```{ojs}
+embeddedPDF = pdfView(
+  "https://minio.lab.sspcloud.fr/lgaliana/data/cahier-technique-dsn/cahier2025.pdf",
+  {
+    startPage: content.data.page,
+    scale: 1
+  })
+```
 
 ```{ojs}
 //import {Copier} from "@mbostock/copier"
@@ -95,9 +157,12 @@ function Copier(content = "Copy code", options) {
 ```
 
 ```{ojs}
-Copier("Copier la sortie en JSON", {value: `${JSON.stringify(content.data, null, 2)}`})
+import {pdfView} from "@linogaliana/pdf-view"
 ```
 
 
+```{ojs}
+copy_button = Copier("Copier la sortie en JSON", {value: `${JSON.stringify(content.data, null, 2)}`})
+```
 
 
