@@ -393,58 +393,101 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><br></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="53" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 52;"><span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>urlCahierTechnique <span class="op">=</span> d3<span class="op">.</span><span class="fu">json</span>(</span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>  <span class="vs">`</span><span class="sc">${</span>APIroot<span class="sc">}</span><span class="vs">/cahier-technique/url?annee=</span><span class="sc">${</span>annee<span class="sc">}</span><span class="vs">`</span></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="54" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 53;"><span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>urlCahierTechnique <span class="op">=</span> d3<span class="op">.</span><span class="fu">json</span>(</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>  <span class="vs">`</span><span class="sc">${</span>APIroot<span class="sc">}</span><span class="vs">/cahier-technique/url?annee=</span><span class="sc">${</span>annee<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>urlPDF <span class="op">=</span> urlCahierTechnique[<span class="st">'url'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div id="ojs-cell-5" data-nodetype="declaration">
+<div>
+<div id="ojs-cell-5-1" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="59" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 58;"><span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>urlCahierTechnique[<span class="st">'url'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div id="ojs-cell-6" data-nodetype="expression">
+<div>
+<div id="ojs-cell-5-2" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
+</div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="64" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 63;"><span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>viewBlock <span class="op">=</span> <span class="fu">html</span><span class="vs">`</span></span>
-<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div style="</span></span>
-<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a><span class="vs">    display: grid;</span></span>
-<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a><span class="vs">    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));</span></span>
-<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a><span class="vs">    gap: 1.5rem;</span></span>
-<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a><span class="vs">    align-items: stretch; /* ✅ étire les deux colonnes à la même hauteur */</span></span>
-<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a><span class="vs">    width: 100%;</span></span>
-<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a><span class="vs">    box-sizing: border-box;</span></span>
-<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a><span class="vs">  "&gt;</span></span>
-<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div style="padding: 1rem; border-radius: 8px;"&gt;</span></span>
-<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>renderedBlocks<span class="sc">}</span></span>
-<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
-<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div style="</span></span>
-<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a><span class="vs">      padding: 1rem; </span></span>
-<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a><span class="vs">      display: flex; </span></span>
-<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a><span class="vs">      flex-direction: column;</span></span>
-<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a><span class="vs">    "&gt;</span></span>
-<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;iframe </span></span>
-<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a><span class="vs">        src="</span><span class="sc">${</span>urlCahierTechnique<span class="sc">}</span><span class="vs">#page=</span><span class="sc">${</span>content<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">page</span><span class="sc">}</span><span class="vs">" </span></span>
-<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a><span class="vs">        width="100%" </span></span>
-<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a><span class="vs">        style="flex: 1; border: none;"</span></span>
-<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a><span class="vs">      &gt;&lt;/iframe&gt;</span></span>
-<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
-<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
-<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="61" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 60;"><span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>viewBlock <span class="op">=</span> <span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div style="</span></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a><span class="vs">    display: grid;</span></span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a><span class="vs">    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));</span></span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a><span class="vs">    gap: 1.5rem;</span></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a><span class="vs">    align-items: stretch; /* ✅ étire les deux colonnes à la même hauteur */</span></span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a><span class="vs">    width: 100%;</span></span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a><span class="vs">    box-sizing: border-box;</span></span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a><span class="vs">  "&gt;</span></span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div style="padding: 1rem; border-radius: 8px;"&gt;</span></span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>renderedBlocks<span class="sc">}</span></span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div style="</span></span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a><span class="vs">      padding: 1rem; </span></span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a><span class="vs">      display: flex; </span></span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a><span class="vs">      flex-direction: column;</span></span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a><span class="vs">    "&gt;</span></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;iframe </span></span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a><span class="vs">        src="</span><span class="sc">${</span>urlPDF<span class="sc">}</span><span class="vs">#page=</span><span class="sc">${</span>content<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">page</span><span class="sc">}</span><span class="vs">" </span></span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a><span class="vs">        width="100%" </span></span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a><span class="vs">        style="flex: 1; border: none;"</span></span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a><span class="vs">      &gt;&lt;/iframe&gt;</span></span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div id="ojs-cell-7" data-nodetype="declaration">
+<div id="ojs-cell-6" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 </section>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb8" data-startfrom="95" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 94;"><span id="cb8-95"><a href="#cb8-95" aria-hidden="true" tabindex="-1"></a>content <span class="op">=</span> d3<span class="op">.</span><span class="fu">json</span>(<span class="vs">`https://specif-dsn.lab.sspcloud.fr/check/</span><span class="sc">${</span>codeDSN<span class="sc">}</span><span class="vs">?annee=2025`</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="92" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 91;"><span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>content <span class="op">=</span> d3<span class="op">.</span><span class="fu">json</span>(<span class="vs">`https://specif-dsn.lab.sspcloud.fr/check/</span><span class="sc">${</span>codeDSN<span class="sc">}</span><span class="vs">?annee=2025`</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb8" data-startfrom="96" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 95;"><span id="cb8-96"><a href="#cb8-96" aria-hidden="true" tabindex="-1"></a>markdown_modalite <span class="op">=</span> {</span>
+<span id="cb8-97"><a href="#cb8-97" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 1️⃣ On sécurise l’accès à la donnée</span></span>
+<span id="cb8-98"><a href="#cb8-98" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> modalites <span class="op">=</span> content<span class="op">?.</span><span class="at">data</span><span class="op">?.</span><span class="at">modalites</span><span class="op">;</span></span>
+<span id="cb8-99"><a href="#cb8-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-100"><a href="#cb8-100" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 2️⃣ On vérifie que c’est un tableau</span></span>
+<span id="cb8-101"><a href="#cb8-101" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span><span class="bu">Array</span><span class="op">.</span><span class="fu">isArray</span>(modalites) <span class="op">||</span> modalites<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>) {</span>
+<span id="cb8-102"><a href="#cb8-102" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;p style="color:#888;"&gt;Aucune modalité disponible.&lt;/p&gt;`</span><span class="op">;</span></span>
+<span id="cb8-103"><a href="#cb8-103" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-104"><a href="#cb8-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-105"><a href="#cb8-105" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 3️⃣ On crée les lignes HTML à partir du tableau</span></span>
+<span id="cb8-106"><a href="#cb8-106" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> rows <span class="op">=</span> modalites<span class="op">.</span><span class="fu">map</span>(</span>
+<span id="cb8-107"><a href="#cb8-107" aria-hidden="true" tabindex="-1"></a>    ([code<span class="op">,</span> label]) <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`&lt;tr&gt;&lt;td style="text-align:center;"&gt;</span><span class="sc">${</span>code<span class="sc">}</span><span class="vs">&lt;/td&gt;&lt;td&gt;</span><span class="sc">${</span>label<span class="sc">}</span><span class="vs">&lt;/td&gt;&lt;/tr&gt;`</span></span>
+<span id="cb8-108"><a href="#cb8-108" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb8-109"><a href="#cb8-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-110"><a href="#cb8-110" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 4️⃣ On assemble le tout dans un tableau stylé</span></span>
+<span id="cb8-111"><a href="#cb8-111" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> tableHTML <span class="op">=</span> <span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb8-112"><a href="#cb8-112" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;table style="border-collapse:collapse; width:100%; margin-top:1em; font-family:sans-serif;"&gt;</span></span>
+<span id="cb8-113"><a href="#cb8-113" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;caption style="font-weight:bold; padding:0.5em; caption-side:top; text-align:left;"&gt;</span></span>
+<span id="cb8-114"><a href="#cb8-114" aria-hidden="true" tabindex="-1"></a><span class="vs">        Liste des modalités</span></span>
+<span id="cb8-115"><a href="#cb8-115" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/caption&gt;</span></span>
+<span id="cb8-116"><a href="#cb8-116" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;thead style="background:#444; color:white;"&gt;</span></span>
+<span id="cb8-117"><a href="#cb8-117" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;tr&gt;</span></span>
+<span id="cb8-118"><a href="#cb8-118" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;th style="text-align:center; padding:0.5em;"&gt;Code&lt;/th&gt;</span></span>
+<span id="cb8-119"><a href="#cb8-119" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;th style="text-align:left; padding:0.5em;"&gt;Libellé&lt;/th&gt;</span></span>
+<span id="cb8-120"><a href="#cb8-120" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/tr&gt;</span></span>
+<span id="cb8-121"><a href="#cb8-121" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/thead&gt;</span></span>
+<span id="cb8-122"><a href="#cb8-122" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;tbody&gt;</span></span>
+<span id="cb8-123"><a href="#cb8-123" aria-hidden="true" tabindex="-1"></a><span class="vs">        </span><span class="sc">${</span>rows<span class="sc">}</span></span>
+<span id="cb8-124"><a href="#cb8-124" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/tbody&gt;</span></span>
+<span id="cb8-125"><a href="#cb8-125" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/table&gt;</span></span>
+<span id="cb8-126"><a href="#cb8-126" aria-hidden="true" tabindex="-1"></a><span class="vs">  `</span><span class="op">;</span></span>
+<span id="cb8-127"><a href="#cb8-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-128"><a href="#cb8-128" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> tableHTML<span class="op">;</span></span>
+<span id="cb8-129"><a href="#cb8-129" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-8" data-nodetype="declaration">
 
@@ -452,40 +495,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb9" data-startfrom="99" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 98;"><span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a>markdown_modalite <span class="op">=</span> {</span>
-<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 1️⃣ On sécurise l’accès à la donnée</span></span>
-<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> modalites <span class="op">=</span> content<span class="op">?.</span><span class="at">data</span><span class="op">?.</span><span class="at">modalites</span><span class="op">;</span></span>
-<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 2️⃣ On vérifie que c’est un tableau</span></span>
-<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span><span class="bu">Array</span><span class="op">.</span><span class="fu">isArray</span>(modalites) <span class="op">||</span> modalites<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>) {</span>
-<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;p style="color:#888;"&gt;Aucune modalité disponible.&lt;/p&gt;`</span><span class="op">;</span></span>
-<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 3️⃣ On crée les lignes HTML à partir du tableau</span></span>
-<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> rows <span class="op">=</span> modalites<span class="op">.</span><span class="fu">map</span>(</span>
-<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a>    ([code<span class="op">,</span> label]) <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`&lt;tr&gt;&lt;td style="text-align:center;"&gt;</span><span class="sc">${</span>code<span class="sc">}</span><span class="vs">&lt;/td&gt;&lt;td&gt;</span><span class="sc">${</span>label<span class="sc">}</span><span class="vs">&lt;/td&gt;&lt;/tr&gt;`</span></span>
-<span id="cb9-111"><a href="#cb9-111" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
-<span id="cb9-112"><a href="#cb9-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-113"><a href="#cb9-113" aria-hidden="true" tabindex="-1"></a>  <span class="co">// 4️⃣ On assemble le tout dans un tableau stylé</span></span>
-<span id="cb9-114"><a href="#cb9-114" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> tableHTML <span class="op">=</span> <span class="fu">html</span><span class="vs">`</span></span>
-<span id="cb9-115"><a href="#cb9-115" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;table style="border-collapse:collapse; width:100%; margin-top:1em; font-family:sans-serif;"&gt;</span></span>
-<span id="cb9-116"><a href="#cb9-116" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;caption style="font-weight:bold; padding:0.5em; caption-side:top; text-align:left;"&gt;</span></span>
-<span id="cb9-117"><a href="#cb9-117" aria-hidden="true" tabindex="-1"></a><span class="vs">        Liste des modalités</span></span>
-<span id="cb9-118"><a href="#cb9-118" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/caption&gt;</span></span>
-<span id="cb9-119"><a href="#cb9-119" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;thead style="background:#444; color:white;"&gt;</span></span>
-<span id="cb9-120"><a href="#cb9-120" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;tr&gt;</span></span>
-<span id="cb9-121"><a href="#cb9-121" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;th style="text-align:center; padding:0.5em;"&gt;Code&lt;/th&gt;</span></span>
-<span id="cb9-122"><a href="#cb9-122" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;th style="text-align:left; padding:0.5em;"&gt;Libellé&lt;/th&gt;</span></span>
-<span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/tr&gt;</span></span>
-<span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/thead&gt;</span></span>
-<span id="cb9-125"><a href="#cb9-125" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;tbody&gt;</span></span>
-<span id="cb9-126"><a href="#cb9-126" aria-hidden="true" tabindex="-1"></a><span class="vs">        </span><span class="sc">${</span>rows<span class="sc">}</span></span>
-<span id="cb9-127"><a href="#cb9-127" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/tbody&gt;</span></span>
-<span id="cb9-128"><a href="#cb9-128" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/table&gt;</span></span>
-<span id="cb9-129"><a href="#cb9-129" aria-hidden="true" tabindex="-1"></a><span class="vs">  `</span><span class="op">;</span></span>
-<span id="cb9-130"><a href="#cb9-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-131"><a href="#cb9-131" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> tableHTML<span class="op">;</span></span>
-<span id="cb9-132"><a href="#cb9-132" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb9" data-startfrom="134" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 133;"><span id="cb9-134"><a href="#cb9-134" aria-hidden="true" tabindex="-1"></a>renderedBlocks <span class="op">=</span> <span class="fu">md</span><span class="vs">`</span></span>
+<span id="cb9-135"><a href="#cb9-135" aria-hidden="true" tabindex="-1"></a><span class="vs"> ### </span><span class="sc">${</span>content<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">nom_champ</span><span class="sc">}</span><span class="vs"> (</span><span class="sc">\`${</span>content<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">code</span><span class="sc">}\`</span><span class="vs">)</span></span>
+<span id="cb9-136"><a href="#cb9-136" aria-hidden="true" tabindex="-1"></a><span class="vs"> </span></span>
+<span id="cb9-137"><a href="#cb9-137" aria-hidden="true" tabindex="-1"></a><span class="vs"> **Nom technique** : </span><span class="sc">\`${</span>content<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">nom_technique</span><span class="sc">}\`</span></span>
+<span id="cb9-138"><a href="#cb9-138" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span></span>
+<span id="cb9-139"><a href="#cb9-139" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span><span class="sc">${</span>content<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">description</span><span class="sc">}</span></span>
+<span id="cb9-140"><a href="#cb9-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-141"><a href="#cb9-141" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span><span class="sc">${</span>markdown_modalite<span class="sc">}</span></span>
+<span id="cb9-142"><a href="#cb9-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-143"><a href="#cb9-143" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;details&gt;</span></span>
+<span id="cb9-144"><a href="#cb9-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-145"><a href="#cb9-145" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;summary&gt;</span></span>
+<span id="cb9-146"><a href="#cb9-146" aria-hidden="true" tabindex="-1"></a><span class="vs">  Détails supplémentaires de la rubrique</span></span>
+<span id="cb9-147"><a href="#cb9-147" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/summary&gt;</span></span>
+<span id="cb9-148"><a href="#cb9-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-149"><a href="#cb9-149" aria-hidden="true" tabindex="-1"></a><span class="vs">  _</span><span class="sc">${</span>content<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">controles</span><span class="sc">}</span><span class="vs">_</span></span>
+<span id="cb9-150"><a href="#cb9-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-151"><a href="#cb9-151" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/details&gt;</span></span>
+<span id="cb9-152"><a href="#cb9-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-153"><a href="#cb9-153" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span><span class="sc">${</span>copy_button<span class="sc">}</span></span>
+<span id="cb9-154"><a href="#cb9-154" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-9" data-nodetype="declaration">
 
@@ -493,58 +523,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb10" data-startfrom="137" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 136;"><span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a>renderedBlocks <span class="op">=</span> <span class="fu">md</span><span class="vs">`</span></span>
-<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a><span class="vs"> ### </span><span class="sc">${</span>content<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">nom_champ</span><span class="sc">}</span><span class="vs"> (</span><span class="sc">\`${</span>content<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">code</span><span class="sc">}\`</span><span class="vs">)</span></span>
-<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a><span class="vs"> </span></span>
-<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a><span class="vs"> **Nom technique** : </span><span class="sc">\`${</span>content<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">nom_technique</span><span class="sc">}\`</span></span>
-<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span></span>
-<span id="cb10-142"><a href="#cb10-142" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span><span class="sc">${</span>content<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">description</span><span class="sc">}</span></span>
-<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span><span class="sc">${</span>markdown_modalite<span class="sc">}</span></span>
-<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;details&gt;</span></span>
-<span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-148"><a href="#cb10-148" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;summary&gt;</span></span>
-<span id="cb10-149"><a href="#cb10-149" aria-hidden="true" tabindex="-1"></a><span class="vs">  Détails supplémentaires de la rubrique</span></span>
-<span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/summary&gt;</span></span>
-<span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a><span class="vs">  _</span><span class="sc">${</span>content<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">controles</span><span class="sc">}</span><span class="vs">_</span></span>
-<span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/details&gt;</span></span>
-<span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span><span class="sc">${</span>copy_button<span class="sc">}</span></span>
-<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div id="ojs-cell-10" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb11" data-startfrom="163" data-source-offset="-42"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 162;"><span id="cb11-163"><a href="#cb11-163" aria-hidden="true" tabindex="-1"></a>pbcopy <span class="op">=</span> text <span class="kw">=&gt;</span> <span class="bu">navigator</span><span class="op">.</span><span class="at">clipboard</span><span class="op">.</span><span class="fu">writeText</span>(text)</span>
-<span id="cb11-164"><a href="#cb11-164" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">Copier</span>(content <span class="op">=</span> <span class="st">"Copy code"</span><span class="op">,</span> options) {</span>
-<span id="cb11-165"><a href="#cb11-165" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="bu">Array</span><span class="op">.</span><span class="fu">isArray</span>(content)) content <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>(content<span class="op">,</span> ([key<span class="op">,</span> value]) <span class="kw">=&gt;</span> [key<span class="op">,</span> () <span class="kw">=&gt;</span> (<span class="fu">pbcopy</span>(value)<span class="op">,</span> value)])<span class="op">;</span></span>
-<span id="cb11-166"><a href="#cb11-166" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Inputs<span class="op">.</span><span class="fu">button</span>(content<span class="op">,</span> {<span class="op">...</span>options<span class="op">,</span> <span class="dt">reduce</span><span class="op">:</span> (value) <span class="kw">=&gt;</span> (<span class="fu">pbcopy</span>(value)<span class="op">,</span> value)})<span class="op">;</span></span>
-<span id="cb11-167"><a href="#cb11-167" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb10" data-startfrom="160" data-source-offset="-42"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 159;"><span id="cb10-160"><a href="#cb10-160" aria-hidden="true" tabindex="-1"></a>pbcopy <span class="op">=</span> text <span class="kw">=&gt;</span> <span class="bu">navigator</span><span class="op">.</span><span class="at">clipboard</span><span class="op">.</span><span class="fu">writeText</span>(text)</span>
+<span id="cb10-161"><a href="#cb10-161" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">Copier</span>(content <span class="op">=</span> <span class="st">"Copy code"</span><span class="op">,</span> options) {</span>
+<span id="cb10-162"><a href="#cb10-162" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="bu">Array</span><span class="op">.</span><span class="fu">isArray</span>(content)) content <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>(content<span class="op">,</span> ([key<span class="op">,</span> value]) <span class="kw">=&gt;</span> [key<span class="op">,</span> () <span class="kw">=&gt;</span> (<span class="fu">pbcopy</span>(value)<span class="op">,</span> value)])<span class="op">;</span></span>
+<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Inputs<span class="op">.</span><span class="fu">button</span>(content<span class="op">,</span> {<span class="op">...</span>options<span class="op">,</span> <span class="dt">reduce</span><span class="op">:</span> (value) <span class="kw">=&gt;</span> (<span class="fu">pbcopy</span>(value)<span class="op">,</span> value)})<span class="op">;</span></span>
+<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-11-1" data-nodetype="declaration">
+<div id="ojs-cell-10-1" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-11-2" data-nodetype="declaration">
+<div id="ojs-cell-10-2" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb12" data-startfrom="171" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 170;"><span id="cb12-171"><a href="#cb12-171" aria-hidden="true" tabindex="-1"></a>copy_button <span class="op">=</span> <span class="fu">Copier</span>(<span class="st">"Copier la sortie en JSON"</span><span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span><span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(content<span class="op">.</span><span class="at">data</span><span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>)<span class="sc">}</span><span class="vs">`</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb11" data-startfrom="168" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 167;"><span id="cb11-168"><a href="#cb11-168" aria-hidden="true" tabindex="-1"></a>copy_button <span class="op">=</span> <span class="fu">Copier</span>(<span class="st">"Copier la sortie en JSON"</span><span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span><span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(content<span class="op">.</span><span class="at">data</span><span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>)<span class="sc">}</span><span class="vs">`</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div id="ojs-cell-12" data-nodetype="declaration">
+<div id="ojs-cell-11" data-nodetype="declaration">
 
 </div>
 </div>
@@ -554,7 +556,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IkFQSXJvb3QgPSBcImh0dHBzOi8vc3BlY2lmLWRzbi5sYWIuc3NwY2xvdWQuZnJcIlxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoibGlzdGVfY29kZXMgPSBkMy5qc29uKGAke0FQSXJvb3R9L2xpc3RlX3J1YnJpcXVlcz9hbm5lZT0ke2FubmVlfWApXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ2aWV3b2YgYW5uZWUgPSBJbnB1dHMucmFkaW8oXG4gIFtcIjIwMjJcIiwgXCIyMDIzXCIsIFwiMjAyNFwiLCBcIjIwMjVcIl0sXG4gIHtsYWJlbDogXCJBbm7DqWVcIiwgdmFsdWU6IFwiMjAyNVwifVxuKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC00IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoidmlld29mIGNvZGVEU04gPSBJbnB1dHMudGV4dCh7XG4gIGxhYmVsOiBcIkNvZGUgdGVjaG5pcXVlIERTTlwiLFxuICBwbGFjZWhvbGRlcjogXCJFbnRyZXIgdW4gY29kZSBhdmVjIGwnYWlkZSBkZSBsJ2F1dG9jb21wbMOpdGlvblwiLFxuICB2YWx1ZTogbGlzdGVfY29kZXNbJ2NvZGVzJ11bMF0sXG4gIGRhdGFsaXN0OiBsaXN0ZV9jb2Rlc1snY29kZXMnXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InVybENhaGllclRlY2huaXF1ZSA9IGQzLmpzb24oXG4gIGAke0FQSXJvb3R9L2NhaGllci10ZWNobmlxdWUvdXJsP2FubmVlPSR7YW5uZWV9YFxuKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC02IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoidXJsQ2FoaWVyVGVjaG5pcXVlWyd1cmwnXVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC03IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoidmlld0Jsb2NrID0gaHRtbGBcbiAgPGRpdiBzdHlsZT1cIlxuICAgIGRpc3BsYXk6IGdyaWQ7XG4gICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiByZXBlYXQoYXV0by1maXQsIG1pbm1heCg0MDBweCwgMWZyKSk7XG4gICAgZ2FwOiAxLjVyZW07XG4gICAgYWxpZ24taXRlbXM6IHN0cmV0Y2g7IC8qIOKchSDDqXRpcmUgbGVzIGRldXggY29sb25uZXMgw6AgbGEgbcOqbWUgaGF1dGV1ciAqL1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG4gIFwiPlxuICAgIDxkaXYgc3R5bGU9XCJwYWRkaW5nOiAxcmVtOyBib3JkZXItcmFkaXVzOiA4cHg7XCI+XG4gICAgICAke3JlbmRlcmVkQmxvY2tzfVxuICAgIDwvZGl2PlxuICAgIDxkaXYgc3R5bGU9XCJcbiAgICAgIHBhZGRpbmc6IDFyZW07IFxuICAgICAgZGlzcGxheTogZmxleDsgXG4gICAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIFwiPlxuICAgICAgPGlmcmFtZSBcbiAgICAgICAgc3JjPVwiJHt1cmxDYWhpZXJUZWNobmlxdWV9I3BhZ2U9JHtjb250ZW50LmRhdGEucGFnZX1cIiBcbiAgICAgICAgd2lkdGg9XCIxMDAlXCIgXG4gICAgICAgIHN0eWxlPVwiZmxleDogMTsgYm9yZGVyOiBub25lO1wiXG4gICAgICA+PC9pZnJhbWU+XG4gICAgPC9kaXY+XG4gIDwvZGl2PlxuYFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC04IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiY29udGVudCA9IGQzLmpzb24oYGh0dHBzOi8vc3BlY2lmLWRzbi5sYWIuc3NwY2xvdWQuZnIvY2hlY2svJHtjb2RlRFNOfT9hbm5lZT0yMDI1YClcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtOSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Im1hcmtkb3duX21vZGFsaXRlID0ge1xuICAvLyAx77iP4oOjIE9uIHPDqWN1cmlzZSBs4oCZYWNjw6hzIMOgIGxhIGRvbm7DqWVcbiAgY29uc3QgbW9kYWxpdGVzID0gY29udGVudD8uZGF0YT8ubW9kYWxpdGVzO1xuXG4gIC8vIDLvuI/ig6MgT24gdsOpcmlmaWUgcXVlIGPigJllc3QgdW4gdGFibGVhdVxuICBpZiAoIUFycmF5LmlzQXJyYXkobW9kYWxpdGVzKSB8fCBtb2RhbGl0ZXMubGVuZ3RoID09PSAwKSB7XG4gICAgcmV0dXJuIGh0bWxgPHAgc3R5bGU9XCJjb2xvcjojODg4O1wiPkF1Y3VuZSBtb2RhbGl0w6kgZGlzcG9uaWJsZS48L3A+YDtcbiAgfVxuXG4gIC8vIDPvuI/ig6MgT24gY3LDqWUgbGVzIGxpZ25lcyBIVE1MIMOgIHBhcnRpciBkdSB0YWJsZWF1XG4gIGNvbnN0IHJvd3MgPSBtb2RhbGl0ZXMubWFwKFxuICAgIChbY29kZSwgbGFiZWxdKSA9PiBodG1sYDx0cj48dGQgc3R5bGU9XCJ0ZXh0LWFsaWduOmNlbnRlcjtcIj4ke2NvZGV9PC90ZD48dGQ+JHtsYWJlbH08L3RkPjwvdHI+YFxuICApO1xuXG4gIC8vIDTvuI/ig6MgT24gYXNzZW1ibGUgbGUgdG91dCBkYW5zIHVuIHRhYmxlYXUgc3R5bMOpXG4gIGNvbnN0IHRhYmxlSFRNTCA9IGh0bWxgXG4gICAgPHRhYmxlIHN0eWxlPVwiYm9yZGVyLWNvbGxhcHNlOmNvbGxhcHNlOyB3aWR0aDoxMDAlOyBtYXJnaW4tdG9wOjFlbTsgZm9udC1mYW1pbHk6c2Fucy1zZXJpZjtcIj5cbiAgICAgIDxjYXB0aW9uIHN0eWxlPVwiZm9udC13ZWlnaHQ6Ym9sZDsgcGFkZGluZzowLjVlbTsgY2FwdGlvbi1zaWRlOnRvcDsgdGV4dC1hbGlnbjpsZWZ0O1wiPlxuICAgICAgICBMaXN0ZSBkZXMgbW9kYWxpdMOpc1xuICAgICAgPC9jYXB0aW9uPlxuICAgICAgPHRoZWFkIHN0eWxlPVwiYmFja2dyb3VuZDojNDQ0OyBjb2xvcjp3aGl0ZTtcIj5cbiAgICAgICAgPHRyPlxuICAgICAgICAgIDx0aCBzdHlsZT1cInRleHQtYWxpZ246Y2VudGVyOyBwYWRkaW5nOjAuNWVtO1wiPkNvZGU8L3RoPlxuICAgICAgICAgIDx0aCBzdHlsZT1cInRleHQtYWxpZ246bGVmdDsgcGFkZGluZzowLjVlbTtcIj5MaWJlbGzDqTwvdGg+XG4gICAgICAgIDwvdHI+XG4gICAgICA8L3RoZWFkPlxuICAgICAgPHRib2R5PlxuICAgICAgICAke3Jvd3N9XG4gICAgICA8L3Rib2R5PlxuICAgIDwvdGFibGU+XG4gIGA7XG5cbiAgcmV0dXJuIHRhYmxlSFRNTDtcbn1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMTAiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJyZW5kZXJlZEJsb2NrcyA9IG1kYFxuICMjIyAke2NvbnRlbnQuZGF0YS5ub21fY2hhbXB9IChcXGAke2NvbnRlbnQuZGF0YS5jb2RlfVxcYClcbiBcbiAqKk5vbSB0ZWNobmlxdWUqKiA6IFxcYCR7Y29udGVudC5kYXRhLm5vbV90ZWNobmlxdWV9XFxgXG4gIFxuICAke2NvbnRlbnQuZGF0YS5kZXNjcmlwdGlvbn1cblxuICAke21hcmtkb3duX21vZGFsaXRlfVxuXG4gIDxkZXRhaWxzPlxuXG4gIDxzdW1tYXJ5PlxuICBEw6l0YWlscyBzdXBwbMOpbWVudGFpcmVzIGRlIGxhIHJ1YnJpcXVlXG4gIDwvc3VtbWFyeT5cblxuICBfJHtjb250ZW50LmRhdGEuY29udHJvbGVzfV9cblxuICA8L2RldGFpbHM+XG5cbiAgJHtjb3B5X2J1dHRvbn1cbmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMTEiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiIvL2ltcG9ydCB7Q29waWVyfSBmcm9tIFwiQG1ib3N0b2NrL2NvcGllclwiXG5wYmNvcHkgPSB0ZXh0ID0+IG5hdmlnYXRvci5jbGlwYm9hcmQud3JpdGVUZXh0KHRleHQpXG5mdW5jdGlvbiBDb3BpZXIoY29udGVudCA9IFwiQ29weSBjb2RlXCIsIG9wdGlvbnMpIHtcbiAgaWYgKEFycmF5LmlzQXJyYXkoY29udGVudCkpIGNvbnRlbnQgPSBBcnJheS5mcm9tKGNvbnRlbnQsIChba2V5LCB2YWx1ZV0pID0+IFtrZXksICgpID0+IChwYmNvcHkodmFsdWUpLCB2YWx1ZSldKTtcbiAgcmV0dXJuIElucHV0cy5idXR0b24oY29udGVudCwgey4uLm9wdGlvbnMsIHJlZHVjZTogKHZhbHVlKSA9PiAocGJjb3B5KHZhbHVlKSwgdmFsdWUpfSk7XG59XG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTEyIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiY29weV9idXR0b24gPSBDb3BpZXIoXCJDb3BpZXIgbGEgc29ydGllIGVuIEpTT05cIiwge3ZhbHVlOiBgJHtKU09OLnN0cmluZ2lmeShjb250ZW50LmRhdGEsIG51bGwsIDIpfWB9KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdhbm5lZScpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdjb2RlRFNOJykifV19
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IkFQSXJvb3QgPSBcImh0dHBzOi8vc3BlY2lmLWRzbi5sYWIuc3NwY2xvdWQuZnJcIlxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoibGlzdGVfY29kZXMgPSBkMy5qc29uKGAke0FQSXJvb3R9L2xpc3RlX3J1YnJpcXVlcz9hbm5lZT0ke2FubmVlfWApXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ2aWV3b2YgYW5uZWUgPSBJbnB1dHMucmFkaW8oXG4gIFtcIjIwMjJcIiwgXCIyMDIzXCIsIFwiMjAyNFwiLCBcIjIwMjVcIl0sXG4gIHtsYWJlbDogXCJBbm7DqWVcIiwgdmFsdWU6IFwiMjAyNVwifVxuKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC00IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoidmlld29mIGNvZGVEU04gPSBJbnB1dHMudGV4dCh7XG4gIGxhYmVsOiBcIkNvZGUgdGVjaG5pcXVlIERTTlwiLFxuICBwbGFjZWhvbGRlcjogXCJFbnRyZXIgdW4gY29kZSBhdmVjIGwnYWlkZSBkZSBsJ2F1dG9jb21wbMOpdGlvblwiLFxuICB2YWx1ZTogbGlzdGVfY29kZXNbJ2NvZGVzJ11bMF0sXG4gIGRhdGFsaXN0OiBsaXN0ZV9jb2Rlc1snY29kZXMnXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InVybENhaGllclRlY2huaXF1ZSA9IGQzLmpzb24oXG4gIGAke0FQSXJvb3R9L2NhaGllci10ZWNobmlxdWUvdXJsP2FubmVlPSR7YW5uZWV9YFxuKVxudXJsUERGID0gdXJsQ2FoaWVyVGVjaG5pcXVlWyd1cmwnXVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC02IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoidmlld0Jsb2NrID0gaHRtbGBcbiAgPGRpdiBzdHlsZT1cIlxuICAgIGRpc3BsYXk6IGdyaWQ7XG4gICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiByZXBlYXQoYXV0by1maXQsIG1pbm1heCg0MDBweCwgMWZyKSk7XG4gICAgZ2FwOiAxLjVyZW07XG4gICAgYWxpZ24taXRlbXM6IHN0cmV0Y2g7IC8qIOKchSDDqXRpcmUgbGVzIGRldXggY29sb25uZXMgw6AgbGEgbcOqbWUgaGF1dGV1ciAqL1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG4gIFwiPlxuICAgIDxkaXYgc3R5bGU9XCJwYWRkaW5nOiAxcmVtOyBib3JkZXItcmFkaXVzOiA4cHg7XCI+XG4gICAgICAke3JlbmRlcmVkQmxvY2tzfVxuICAgIDwvZGl2PlxuICAgIDxkaXYgc3R5bGU9XCJcbiAgICAgIHBhZGRpbmc6IDFyZW07IFxuICAgICAgZGlzcGxheTogZmxleDsgXG4gICAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIFwiPlxuICAgICAgPGlmcmFtZSBcbiAgICAgICAgc3JjPVwiJHt1cmxQREZ9I3BhZ2U9JHtjb250ZW50LmRhdGEucGFnZX1cIiBcbiAgICAgICAgd2lkdGg9XCIxMDAlXCIgXG4gICAgICAgIHN0eWxlPVwiZmxleDogMTsgYm9yZGVyOiBub25lO1wiXG4gICAgICA+PC9pZnJhbWU+XG4gICAgPC9kaXY+XG4gIDwvZGl2PlxuYFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC03IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiY29udGVudCA9IGQzLmpzb24oYGh0dHBzOi8vc3BlY2lmLWRzbi5sYWIuc3NwY2xvdWQuZnIvY2hlY2svJHtjb2RlRFNOfT9hbm5lZT0yMDI1YClcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtOCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Im1hcmtkb3duX21vZGFsaXRlID0ge1xuICAvLyAx77iP4oOjIE9uIHPDqWN1cmlzZSBs4oCZYWNjw6hzIMOgIGxhIGRvbm7DqWVcbiAgY29uc3QgbW9kYWxpdGVzID0gY29udGVudD8uZGF0YT8ubW9kYWxpdGVzO1xuXG4gIC8vIDLvuI/ig6MgT24gdsOpcmlmaWUgcXVlIGPigJllc3QgdW4gdGFibGVhdVxuICBpZiAoIUFycmF5LmlzQXJyYXkobW9kYWxpdGVzKSB8fCBtb2RhbGl0ZXMubGVuZ3RoID09PSAwKSB7XG4gICAgcmV0dXJuIGh0bWxgPHAgc3R5bGU9XCJjb2xvcjojODg4O1wiPkF1Y3VuZSBtb2RhbGl0w6kgZGlzcG9uaWJsZS48L3A+YDtcbiAgfVxuXG4gIC8vIDPvuI/ig6MgT24gY3LDqWUgbGVzIGxpZ25lcyBIVE1MIMOgIHBhcnRpciBkdSB0YWJsZWF1XG4gIGNvbnN0IHJvd3MgPSBtb2RhbGl0ZXMubWFwKFxuICAgIChbY29kZSwgbGFiZWxdKSA9PiBodG1sYDx0cj48dGQgc3R5bGU9XCJ0ZXh0LWFsaWduOmNlbnRlcjtcIj4ke2NvZGV9PC90ZD48dGQ+JHtsYWJlbH08L3RkPjwvdHI+YFxuICApO1xuXG4gIC8vIDTvuI/ig6MgT24gYXNzZW1ibGUgbGUgdG91dCBkYW5zIHVuIHRhYmxlYXUgc3R5bMOpXG4gIGNvbnN0IHRhYmxlSFRNTCA9IGh0bWxgXG4gICAgPHRhYmxlIHN0eWxlPVwiYm9yZGVyLWNvbGxhcHNlOmNvbGxhcHNlOyB3aWR0aDoxMDAlOyBtYXJnaW4tdG9wOjFlbTsgZm9udC1mYW1pbHk6c2Fucy1zZXJpZjtcIj5cbiAgICAgIDxjYXB0aW9uIHN0eWxlPVwiZm9udC13ZWlnaHQ6Ym9sZDsgcGFkZGluZzowLjVlbTsgY2FwdGlvbi1zaWRlOnRvcDsgdGV4dC1hbGlnbjpsZWZ0O1wiPlxuICAgICAgICBMaXN0ZSBkZXMgbW9kYWxpdMOpc1xuICAgICAgPC9jYXB0aW9uPlxuICAgICAgPHRoZWFkIHN0eWxlPVwiYmFja2dyb3VuZDojNDQ0OyBjb2xvcjp3aGl0ZTtcIj5cbiAgICAgICAgPHRyPlxuICAgICAgICAgIDx0aCBzdHlsZT1cInRleHQtYWxpZ246Y2VudGVyOyBwYWRkaW5nOjAuNWVtO1wiPkNvZGU8L3RoPlxuICAgICAgICAgIDx0aCBzdHlsZT1cInRleHQtYWxpZ246bGVmdDsgcGFkZGluZzowLjVlbTtcIj5MaWJlbGzDqTwvdGg+XG4gICAgICAgIDwvdHI+XG4gICAgICA8L3RoZWFkPlxuICAgICAgPHRib2R5PlxuICAgICAgICAke3Jvd3N9XG4gICAgICA8L3Rib2R5PlxuICAgIDwvdGFibGU+XG4gIGA7XG5cbiAgcmV0dXJuIHRhYmxlSFRNTDtcbn1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtOSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InJlbmRlcmVkQmxvY2tzID0gbWRgXG4gIyMjICR7Y29udGVudC5kYXRhLm5vbV9jaGFtcH0gKFxcYCR7Y29udGVudC5kYXRhLmNvZGV9XFxgKVxuIFxuICoqTm9tIHRlY2huaXF1ZSoqIDogXFxgJHtjb250ZW50LmRhdGEubm9tX3RlY2huaXF1ZX1cXGBcbiAgXG4gICR7Y29udGVudC5kYXRhLmRlc2NyaXB0aW9ufVxuXG4gICR7bWFya2Rvd25fbW9kYWxpdGV9XG5cbiAgPGRldGFpbHM+XG5cbiAgPHN1bW1hcnk+XG4gIETDqXRhaWxzIHN1cHBsw6ltZW50YWlyZXMgZGUgbGEgcnVicmlxdWVcbiAgPC9zdW1tYXJ5PlxuXG4gIF8ke2NvbnRlbnQuZGF0YS5jb250cm9sZXN9X1xuXG4gIDwvZGV0YWlscz5cblxuICAke2NvcHlfYnV0dG9ufVxuYFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0xMCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vaW1wb3J0IHtDb3BpZXJ9IGZyb20gXCJAbWJvc3RvY2svY29waWVyXCJcbnBiY29weSA9IHRleHQgPT4gbmF2aWdhdG9yLmNsaXBib2FyZC53cml0ZVRleHQodGV4dClcbmZ1bmN0aW9uIENvcGllcihjb250ZW50ID0gXCJDb3B5IGNvZGVcIiwgb3B0aW9ucykge1xuICBpZiAoQXJyYXkuaXNBcnJheShjb250ZW50KSkgY29udGVudCA9IEFycmF5LmZyb20oY29udGVudCwgKFtrZXksIHZhbHVlXSkgPT4gW2tleSwgKCkgPT4gKHBiY29weSh2YWx1ZSksIHZhbHVlKV0pO1xuICByZXR1cm4gSW5wdXRzLmJ1dHRvbihjb250ZW50LCB7Li4ub3B0aW9ucywgcmVkdWNlOiAodmFsdWUpID0+IChwYmNvcHkodmFsdWUpLCB2YWx1ZSl9KTtcbn1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMTEiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJjb3B5X2J1dHRvbiA9IENvcGllcihcIkNvcGllciBsYSBzb3J0aWUgZW4gSlNPTlwiLCB7dmFsdWU6IGAke0pTT04uc3RyaW5naWZ5KGNvbnRlbnQuZGF0YSwgbnVsbCwgMil9YH0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2FubmVlJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2NvZGVEU04nKSJ9XX0=
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
