@@ -20,9 +20,8 @@ RUN pip install uv && uv sync && mkdir -p data
 # -----------------------------
 COPY app ./app
 COPY src ./src
-COPY src/main.py main.py
 
-RUN uv run main.py
+RUN uv run src/main.py
 
 # -----------------------------
 # 🚀 5. Commande de lancement
