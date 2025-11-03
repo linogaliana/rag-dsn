@@ -1,18 +1,34 @@
+import yaml
+import re
 import requests
 from pathlib import Path
 import PyPDF2
-import re
+
+
+def get_location_from_yaml(path: str = "config.yaml"):
+    with open(path, "r") as f:
+        config = yaml.safe_load(f)
+    return config
 
 
 def download_pdf(url: str, filename: str = None):
+
     if filename is None:
-        filename = Path(url).name  # Extract file name from URL
+        filename = Path(url).name
+
+    filepath = Path(filename)
+
+    # Create directory if it doesn't exist
+    filepath.parent.mkdir(parents=True, exist_ok=True)
 
     response = requests.get(url, timeout=15)
-    response.raise_for_status()  # Raise an exception for HTTP errors
+    response.raise_for_status()
 
-    with open(filename, "wb") as f:
+    # Write the content
+    with open(filepath, "wb") as f:
         f.write(response.content)
+
+    print(f"Downloaded to: {filepath.resolve()}")
 
 
 def read_pdf_from_page(filepath: str, start_page: int = 0, end_page: int = None):

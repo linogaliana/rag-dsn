@@ -2,20 +2,27 @@ import csv
 import json
 from loguru import logger
 
-from src.ingest import download_pdf, read_pdf_from_page, clean_pdf_text
-from src.parse import detect_rubriques
+from ingest import (
+    get_location_from_yaml,
+    download_pdf, read_pdf_from_page, clean_pdf_text
+)
+from parse import detect_rubriques
+
+YEAR = "2025"
+
+config = get_location_from_yaml().get("cahier-technique").get(YEAR)
 
 # Example usage
 download_pdf(
-    url="https://www.net-entreprises.fr/media/documentation/dsn-cahier-technique-2025.1.pdf",
-    filename="data/cahier.pdf",
+    url=config.get("url"),
+    filename=f"data/cahier_{YEAR}.pdf",
 )
 
 logger.success("PDF téléchargé !")
 logger.info("Processing PDF")
 
 # Example usage
-pdf_text = read_pdf_from_page("data/cahier.pdf", start_page=126)
+pdf_text = read_pdf_from_page(f"data/cahier_{YEAR}.pdf", start_page=config.get('start'))
 
 logger.info("Nettoyage du PDF")
 

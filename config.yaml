@@ -1,0 +1,16 @@
+cahier-technique:
+  "2025":
+    url: https://www.net-entreprises.fr/media/documentation/dsn-cahier-technique-2025.1.pdf
+    start: 126
+  "2024":
+    url: https://www.net-entreprises.fr/media/documentation/dsn-cahier-technique-2024.1.pdf
+    start: 123
+  "2023":
+    url: https://www.net-entreprises.fr/media/documentation/dsn-cahier-technique-2023.1.pdf
+    start: 118
+  "2022":
+    url: https://www.net-entreprises.fr/media/documentation/dsn-cahier-technique-2022.1.pdf
+    start: 117
+  "2021":
+    url: https://www.net-entreprises.fr/media/documentation/dsn-cahier-technique-2022.1.pdf
+    start: 112
