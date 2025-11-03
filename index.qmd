@@ -49,6 +49,10 @@ viewof codeDSN = Inputs.text({
 
 <br>
 
+```{ojs}
+urlCahierTechnique = "https://minio.lab.sspcloud.fr/lgaliana/data/cahier-technique-dsn/cahier2025.pdf"
+```
+
 
 ```{ojs}
 viewBlock = html`
@@ -56,21 +60,30 @@ viewBlock = html`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 1.5rem;
-    align-items: start;
+    align-items: stretch; /* ✅ étire les deux colonnes à la même hauteur */
     width: 100%;
     box-sizing: border-box;
   ">
     <div style="padding: 1rem; border-radius: 8px;">
       ${renderedBlocks}
     </div>
-    <div style="padding: 1rem; border-radius: 8px;">
-      ${embeddedPDF}
+    <div style="
+      padding: 1rem; 
+      display: flex; 
+      flex-direction: column;
+    ">
+      <iframe 
+        src="${urlCahierTechnique}#page=${content.data.page}" 
+        width="100%" 
+        style="flex: 1; border: none;"
+      ></iframe>
     </div>
   </div>
 `
 ```
 
 :::
+
 
 ```{ojs}
 content = d3.json(`https://specif-dsn.lab.sspcloud.fr/check/${codeDSN}`)
@@ -139,25 +152,12 @@ renderedBlocks = md`
 ```
 
 ```{ojs}
-embeddedPDF = pdfView(
-  "https://minio.lab.sspcloud.fr/lgaliana/data/cahier-technique-dsn/cahier2025.pdf",
-  {
-    startPage: content.data.page,
-    scale: 1
-  })
-```
-
-```{ojs}
 //import {Copier} from "@mbostock/copier"
 pbcopy = text => navigator.clipboard.writeText(text)
 function Copier(content = "Copy code", options) {
   if (Array.isArray(content)) content = Array.from(content, ([key, value]) => [key, () => (pbcopy(value), value)]);
   return Inputs.button(content, {...options, reduce: (value) => (pbcopy(value), value)});
 }
-```
-
-```{ojs}
-import {pdfView} from "@linogaliana/pdf-view"
 ```
 
 
