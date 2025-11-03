@@ -2,6 +2,17 @@ from fastapi import FastAPI, HTTPException, Query
 from loguru import logger
 from pathlib import Path
 import json
+import yaml
+
+
+CONFIG_PATH = Path("config.yaml")
+
+def get_location_from_yaml():
+    """Lit le fichier config.yaml et renvoie le contenu en dict."""
+    if not CONFIG_PATH.exists():
+        raise HTTPException(status_code=500, detail="Fichier config.yaml introuvable.")
+    with open(CONFIG_PATH, "r", encoding="utf-8") as f:
+        return yaml.safe_load(f)
 
 # --------------------------------------------------
 # Configuration Loguru
@@ -14,6 +25,7 @@ logger.info("🚀 Lancement de l'API DSN Checker")
 # --------------------------------------------------
 # Initialisation de FastAPI
 # --------------------------------------------------
+
 app = FastAPI(
     title="DSN Checker API",
     version="0.1.0",
@@ -84,3 +96,23 @@ def liste_rubriques(annee: int = Query(..., description="Année du cahier techni
     _, dsn_dict = load_dsn_data(annee)
     codes = list(dsn_dict.keys())
     return {"annee": annee, "count": len(codes), "codes": codes}
+
+
+@app.get("/cahier-technique/url")
+def get_cahier_url(annee: int = Query(..., description="Année du cahier technique")):
+    """
+    Retourne l'URL du cahier technique DSN pour une année donnée.
+    """
+    config = get_location_from_yaml()
+    cahiers = config.get("cahier-technique", {})
+    year_str = str(annee)
+
+    if year_str not in cahiers:
+        raise HTTPException(status_code=404, detail=f"Aucune configuration pour {annee}")
+
+    url = cahiers[year_str].get("url")
+    if not url:
+        raise HTTPException(status_code=404, detail=f"URL introuvable pour {annee}")
+
+    logger.info(f"📄 URL du cahier technique {annee} : {url}")
+    return {"annee": annee, "url": url, "start": cahiers[year_str].get("start")}

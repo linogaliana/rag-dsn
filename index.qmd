@@ -4,11 +4,14 @@ toc: false
 title-block-style: none
 ---
 
-
 ```{ojs}
-liste_codes = d3.json("https://specif-dsn.lab.sspcloud.fr/liste_rubriques")
+APIroot = "https://specif-dsn.lab.sspcloud.fr"
 ```
 
+
+```{ojs}
+liste_codes = d3.json(`${APIroot}/liste_rubriques?annee=${annee}`)
+```
 
 
 ::: {.column-page}
@@ -16,9 +19,6 @@ liste_codes = d3.json("https://specif-dsn.lab.sspcloud.fr/liste_rubriques")
 # API d'extraction d'infos de la DSN
 
 Une extraction bête et méchante du contenu du manuel technique 2025 de la DSN, un magnifique PDF de 400 pages. 
-
-
-
 
 
 :::: {.callout-tip collapse="true"}
@@ -31,11 +31,12 @@ Une extraction bête et méchante du contenu du manuel technique 2025 de la DSN,
 
 
 ```{ojs}
-viewof annee = Inputs.checkbox(
+viewof annee = Inputs.radio(
   ["2022", "2023", "2024", "2025"],
-  {label: "Année", disabled: ["2022", "2023", "2024"], value: ["2025"]}
+  {label: "Année", value: "2025"}
 )
 ```
+
 
 
 ```{ojs}
@@ -50,7 +51,8 @@ viewof codeDSN = Inputs.text({
 <br>
 
 ```{ojs}
-urlCahierTechnique = "https://minio.lab.sspcloud.fr/lgaliana/data/cahier-technique-dsn/cahier2025.pdf"
+urlCahierTechnique = `${APIroot}/cahier-technique/url?annee=${annee}`
+d3.json(urlCahierTechnique)
 ```
 
 
@@ -86,7 +88,7 @@ viewBlock = html`
 
 
 ```{ojs}
-content = d3.json(`https://specif-dsn.lab.sspcloud.fr/check/${codeDSN}`)
+content = d3.json(`https://specif-dsn.lab.sspcloud.fr/check/${codeDSN}?annee=2025`)
 ```
 
 ```{ojs}
