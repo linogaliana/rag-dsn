@@ -54,10 +54,7 @@ viewof codeDSN = Inputs.text({
 urlCahierTechnique = d3.json(
   `${APIroot}/cahier-technique/url?annee=${annee}`
 )
-```
-
-```{ojs}
-urlCahierTechnique['url']
+urlPDF = urlCahierTechnique['url']
 ```
 
 
@@ -80,7 +77,7 @@ viewBlock = html`
       flex-direction: column;
     ">
       <iframe 
-        src="${urlCahierTechnique}#page=${content.data.page}" 
+        src="${urlPDF}#page=${content.data.page}" 
         width="100%" 
         style="flex: 1; border: none;"
       ></iframe>
