@@ -8,11 +8,25 @@ import yaml
 CONFIG_PATH = Path("config.yaml")
 
 def get_location_from_yaml():
-    """Lit le fichier config.yaml et renvoie le contenu en dict."""
+    """
+    Lit le fichier config.yaml, transforme les URLs pour pointer vers le stockage MinIO,
+    et renvoie le contenu modifié sous forme de dictionnaire.
+    """
     if not CONFIG_PATH.exists():
         raise HTTPException(status_code=500, detail="Fichier config.yaml introuvable.")
+
     with open(CONFIG_PATH, "r", encoding="utf-8") as f:
-        return yaml.safe_load(f)
+        config = yaml.safe_load(f)
+
+    cahiers = config.get("cahier-technique", {})
+    base_minio = "https://minio.lab.sspcloud.fr/lgaliana/data/cahier-technique-dsn"
+
+    # 🧩 Transformation dynamique des URLs
+    for year, data in cahiers.items():
+        config["cahier-technique"][year]["url"] = f"{base_minio}/cahier_{year}.pdf"
+
+    return config
+
 
 # --------------------------------------------------
 # Configuration Loguru

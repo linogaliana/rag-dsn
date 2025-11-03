@@ -51,8 +51,13 @@ viewof codeDSN = Inputs.text({
 <br>
 
 ```{ojs}
-urlCahierTechnique = `${APIroot}/cahier-technique/url?annee=${annee}`
-d3.json(urlCahierTechnique)
+urlCahierTechnique = d3.json(
+  `${APIroot}/cahier-technique/url?annee=${annee}`
+)
+```
+
+```{ojs}
+urlCahierTechnique['url']
 ```
 
 
