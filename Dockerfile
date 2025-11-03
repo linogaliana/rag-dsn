@@ -12,6 +12,7 @@ WORKDIR /app
 # 📦 3. Installer les dépendances
 # -----------------------------
 COPY pyproject.toml .
+COPY config.yaml .
 
 RUN pip install uv && uv sync && mkdir -p data
 
