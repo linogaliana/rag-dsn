@@ -1,4 +1,4 @@
-import csv
+from pathlib import Path
 import json
 from loguru import logger
 
@@ -8,33 +8,57 @@ from ingest import (
 )
 from parse import detect_rubriques
 
-YEAR = "2025"
 
-config = get_location_from_yaml().get("cahier-technique").get(YEAR)
+def pipeline_prod_json(year: int | str, config: dict):
+    """
+    Pipeline complète :
+    - récupère les infos de config YAML
+    - télécharge le PDF correspondant
+    - lit, nettoie et extrait les rubriques
+    - sauvegarde le résultat en JSON
+    """
 
-# Example usage
-download_pdf(
-    url=config.get("url"),
-    filename=f"data/cahier_{YEAR}.pdf",
-)
+    year = str(year)
 
-logger.success("PDF téléchargé !")
-logger.info("Processing PDF")
+    config = config.get("cahier-technique").get(year)
+    if config is None:
+        raise ValueError(f"Aucune configuration trouvée pour l'année {year} dans le YAML.")
 
-# Example usage
-pdf_text = read_pdf_from_page(f"data/cahier_{YEAR}.pdf", start_page=config.get('start'))
+    # Dossier de sortie
+    Path("data").mkdir(parents=True, exist_ok=True)
 
-logger.info("Nettoyage du PDF")
+    # Téléchargement du PDF
+    download_pdf(
+        url=config.get("url"),
+        filename=f"data/cahier_{year}.pdf",
+    )
 
-cleaned_text = clean_pdf_text(pdf_text)
+    logger.success(f"PDF {year} téléchargé !")
+    logger.info(f"Processing PDF {year}")
 
-logger.info("Extraction des rubriques")
+    # Lecture du texte PDF à partir de la page indiquée
+    pdf_text = read_pdf_from_page(
+        f"data/cahier_{year}.pdf",
+        start_page=config.get("start")
+    )
 
-results = detect_rubriques(cleaned_text)
+    logger.info(f"Nettoyage du PDF {year}")
+    cleaned_text = clean_pdf_text(pdf_text)
 
-logger.success("Sauvegarde intermédiaire")
+    logger.info(f"Extraction des rubriques {year}")
+    results = detect_rubriques(cleaned_text)
 
-# Sauvegarde au format JSON
-with open("data/rubriques.json", "w", encoding="utf-8") as f:
-    json.dump(results, f, ensure_ascii=False, indent=2)
+    logger.success(f"Sauvegarde intermédiaire {year}")
 
+    # Sauvegarde JSON
+    output_file = Path(f"data/rubriques_{year}.json")
+    with output_file.open("w", encoding="utf-8") as f:
+        json.dump(results, f, ensure_ascii=False, indent=2)
+
+    logger.success(f"Résultat sauvegardé : {output_file.resolve()}")
+
+
+config = get_location_from_yaml()
+
+for years in list(range(2021, 2026)):
+    pipeline_prod_json(years, config)
