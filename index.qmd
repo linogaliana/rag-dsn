@@ -94,9 +94,13 @@ content = d3.json(`https://specif-dsn.lab.sspcloud.fr/check/${codeDSN}?annee=202
 ```
 
 ```{ojs}
+content?.data?.modalites
+```
+
+```{ojs}
 markdown_modalite = {
   // 1️⃣ On sécurise l’accès à la donnée
-  const modalites = content?.data?.modalites;
+  const modalites = (content?.data?.modalites ?? []).sort((a, b) => a[0] - b[0]);
 
   // 2️⃣ On vérifie que c’est un tableau
   if (!Array.isArray(modalites) || modalites.length === 0) {
